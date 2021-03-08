@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block scripts %}
+{% include 'includes/scripts.html' %}
+{% endblock %}
+
+
+{% block navbar %}
+{% include 'includes/navbar-template.html' %}
+{% endblock %}
+
+{% block page_header %}
+<!-- Page Header -->
+<header class="masthead" style="background: #212529">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>{{ title }}</h1>
+                    <h2 class="subheading">{{ subheading }}</h2>
+                    <span class="meta">Posted by
+                        <a href="#">Author</a>
+                        on August 24, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block main_content %}
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {{ content|safe }}
+            </div>
+        </div>
+    </div>
+</article>
+<hr>
+{% endblock %}
+
+
+
+{% block footer %}
+{% include 'includes/footer_template.html' %}
+{% endblock %}

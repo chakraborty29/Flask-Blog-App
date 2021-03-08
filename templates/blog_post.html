@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block scripts %}
+{% include 'includes/scripts.html' %}
+{% endblock %}
+
+{% block navbar %}
+{% include 'includes/navbar-template.html' %}
+{% endblock %}
+
+{% block page_header %}
+<!-- Page Header -->
+<header class="masthead" style="background: #212529">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <h1>{{ title }}</h1>
+                    <h2 class="subheading">{{ subheading }}</h2>
+                    <span class="meta">Posted by
+                        <a href="{{ url_for('about') }}">{{ author }}</a>
+                        on {{ create_date.strftime("%B") }} {{ create_date.day }}, {{ create_date.year }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block main_content %}
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                {{ content|safe }}
+            </div>
+        </div>
+    </div>
+</article>
+<hr>
+
+<!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<!-- <div class="container mt-5 mb-5">
+    <div class="d-flex justify-content-center row">
+        <div class="d-flex flex-column col-md-8">
+            <div class="coment-bottom bg-white p-2 px-4">
+                <form action="">
+                    <div class="d-flex flex-row add-comment-section mt-4 mb-4">
+                        <input type="text" class="form-control mr-3" placeholder="Add comment">
+                        <input style="font-weight: 600; color: #fff; background-color: #212529; " type="submit"
+                            class="btnSubmit btn-sm" value="Comment">
+                    </div>
+                </form>
+                <hr>
+                <div style="margin-top: 0px;" class="commented-section mt-2">
+                    <div class="d-flex flex-row align-items-center commented-user">
+                        <h5 class="mr-2">
+                            {{"Author's name pulled from database"}}
+                        </h5>
+                        <span class="dot mb-1"></span>
+                        <span class="mb-1 ml-2">
+                            {{"datetime from python"}}
+                        </span>
+                    </div>
+                    <div class="comment-text-sm"><span>{{"comment made by the user pulled from the database"}}</span>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr> -->
+
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+{% include 'includes/footer_template.html' %}
+{% endblock %}

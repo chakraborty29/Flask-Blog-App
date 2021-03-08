@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block scripts %}
+{% include 'includes/scripts.html' %}
+{% endblock %}
+
+{% block navbar %}
+{% include 'includes/navbar-template.html' %}
+{% endblock %}
+
+{% block page_header %}
+<!-- Page Header -->
+<header class="masthead" style="background: #212529">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Clean Blog</h1>
+          <span class="subheading">A Blog Theme by Start Bootstrap</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block main_content %}
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      {% for article in articles %}
+      <div class="post-preview">
+        <a href="post/{{ article.article_id }}">
+          <h2 class="post-title">
+            {{article.title}}
+          </h2>
+          <h3 class="post-subtitle">
+            {{article.subheading}}
+          </h3>
+        </a>
+
+        <p class="post-meta">Posted by
+          <a href="{{ url_for('about') }}">{{article.author}}</a>
+          on {{article.create_date.strftime("%B")}} {{article.create_date.day}}, {{article.create_date.year}}</p>
+      </div>
+      <hr>
+      {% endfor %}
+
+      <!-- Pager -->
+      <div class="clearfix">
+        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+{% endblock %}
+
+
+{% block footer %}
+{% include 'includes/footer_template.html' %}
+{% endblock %}

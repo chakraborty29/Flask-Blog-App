@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block scripts %}
+{% include 'includes/scripts.html' %}
+{% endblock %}
+{% block tiny %}
+<script src="https://cdn.tiny.cloud/1/3morjpkecby4a4dkn353592coru3ilatbgz6rabvzsuk7vmj/tinymce/5/tinymce.min.js"
+  referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: ' code autolink lists media table ',
+    toolbar: ' addcomment showcomments code formatpainter table',
+    toolbar_mode: 'floating',
+
+  });
+</script>
+{% endblock %}
+
+{% block navbar %}
+{% include 'includes/navbar-template.html' %}
+{% endblock %}
+
+{% block page_header %}
+<!-- Page Header -->
+<header class="masthead" style="background: #212529">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Admin Dashboard</h1>
+          <span class="subheading">Welcome {{session.first_name}} {{ session.last_name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
+
+{% block main_content %}
+<div class="container login-container">
+  {% include 'includes/register_messages.html' %}
+  <div class="row">
+    <!-- Blog Post -->
+    <div class="col-md login-form-2">
+      <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <h3>Write Your Blog</h3>
+        <form method="POST" action="{{ url_for('dashboard') }}">
+          <div class="form-group">
+            {{ form.heading(class_="form-control", placeholder="Title", value="") }}
+            <!-- <input type="text" class="form-control" placeholder="Title" value="" /> -->
+          </div>
+          <div class="form-group">
+            {{ form.subheading(class_="form-control", placeholder="Subheading", value="") }}
+            <!-- <input type="password" class="form-control" placeholder="Subheading" value="" /> -->
+          </div>
+          <div class="form-group">
+            {{ form.article(class_="form-control", id="mytextarea", placeholder="Write your article") }}
+            <!-- <textarea id="mytextarea" name="mytextarea">Hello, World!</textarea> -->
+            <!-- <input type="password" class="form-control" placeholder="Article Content" value="" /> -->
+          </div>
+          <div class="form-group">
+            {{ form.submit_button(class_="btnSubmit", value="Post") }}
+            <!-- <input type="submit" class="btnSubmit" value="Post" /> -->
+          </div>
+          {{ form.csrf_token }}
+        </form>
+      </div>
+    </div>
+  </div>
+  <hr>
+  {% endblock %}
+
+
+
+  {% block footer %}
+  {% include 'includes/footer_template.html' %}
+  {% endblock %}

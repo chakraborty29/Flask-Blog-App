@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %} Register / Login {% endblock %}
+
+{% block scripts %}
+{% include 'includes/scripts.html' %}
+{% endblock %}
+
+{% block navbar %}
+{% include 'includes/navbar-template.html' %}
+{% endblock %}
+
+{% block page_header %}
+<!-- Page Header -->
+<header class="masthead" style="background: #212529">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="page-heading">
+          <h1>Register / Login</h1>
+          <span class="subheading">If you would like to write articles, please register or login.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+
+{% endblock %}
+
+<!-- Main Content -->
+{% block main_content %}
+<div class="container login-container">
+  {% include 'includes/register_messages.html' %}
+  <div class="row">
+    <!-- Register -->
+    <div class="col-md-6 login-form-1">
+
+      <h3>Register</h3>
+      <form method="POST" action="{{ url_for('register') }}">
+        <div class="form-group">
+          {{ form.first_name(class_="form-control", placeholder="First Name", value="", required=True) }}
+          <!-- <input type="text" class="form-control" placeholder="Full Name" value="" /> -->
+          <ul>
+            {% for error in form.first_name.errors %}
+            <li class="alert alert-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-group">
+          {{ form.last_name(class_="form-control", placeholder="Last Name", value="", required=True) }}
+          <!-- <input type="text" class="form-control" placeholder="Full Name" value="" /> -->
+          <ul>
+            {% for error in form.last_name.errors %}
+            <li class="alert alert-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-group">
+          {{ form.username(class_="form-control", placeholder="Username", value="", required=True) }}
+          <!-- <input type="text" class="form-control" placeholder="Username" value="" /> -->
+          <ul>
+            {% for error in form.username.errors %}
+            <li class="alert alert-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-group">
+          {{ form.email(class_="form-control", placeholder="Your Email*", value="", required=True) }}
+          <!-- <input type="text" class="form-control" placeholder="Your Email *" value="" /> -->
+          <ul>
+            {% for error in form.email.errors %}
+            <li class="alert alert-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-group">
+          {{ form.password(class_="form-control", placeholder="Your Password*", value="", required=True) }}
+          <!-- <input type="password" class="form-control" placeholder="Your Password *" value="" /> -->
+          <ul>
+            {% for error in form.password.errors %}
+            <li class="alert alert-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-group">
+          {{ form.confirm(class_="form-control", placeholder="Confirm Password", value="", required=True) }}
+          <!-- <input type="password" class="form-control" placeholder="Confirm Password" value="" /> -->
+          <ul>
+            {% for error in form.confirm.errors %}
+            <li class="alert alert-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="form-group">
+          {{ form.submit_button(class_="btnSubmit", value="Register") }}
+          <!-- <input type="submit" class="btnSubmit" value="Register" /> -->
+        </div>
+        {{ form.csrf_token }}
+      </form>
+    </div>
+
+    <!-- Login -->
+    <div class="col-md-6 login-form-2">
+      <!-- {% include 'includes/logout_message.html' %} -->
+      <div style="position: relative; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <!-- {% include 'includes/login_messages.html' %} -->
+        <h3>Login</h3>
+        <form method="POST" action="{{ url_for('login') }}">
+          <div class="form-group">
+            {{ login_form.email(class_="form-control", placeholder="Your Email*", value="", required=True) }}
+            <!-- <input type="text" class="form-control" placeholder="Your Email *" value="" /> -->
+          </div>
+          <ul>
+            {% for error in login_form.email.errors %}
+            <li class="alert alert-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+          <div class="form-group">
+            {{ login_form.password(class_="form-control", placeholder="Your Password*", value="", required=True) }}
+            <!-- <input type="password" class="form-control" placeholder="Your Password *" value="" /> -->
+          </div>
+          <ul>
+            {% for error in form.password.errors %}
+            <li class="alert alert-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+          <div class="form-group">
+            {{ login_form.submit_button(class_="btnSubmit", value="Login") }}
+            <!-- <input type="submit" class="btnSubmit" value="Login" /> -->
+          </div>
+          <div class="form-group">
+            <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
+          </div>
+          {{ form.csrf_token }}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+{% endblock %}
+
+{% block footer %}
+{% include 'includes/footer_template.html' %}
+{% endblock %}
